@@ -11,7 +11,9 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Configure
-      run: cmake -B build -G "Visual Studio 17 2022" -A x64 -S example
+      # let CMake auto-detect the Visual Studio version installed on the runner
+      # (the windows-2025 image no longer provides Visual Studio 17 2022)
+      run: cmake -B build -A x64 -S example
 
     - name: Build
       run: cmake --build build --config Release
