@@ -107,16 +107,17 @@ static std::string luaNumber(const std::string& text, bool isFloat) {
 
 	if (isFloat) {
 		std::snprintf(buffer, sizeof(buffer), "%g", value);
+		std::string result = buffer;
 
-		// make sure it reads as a float
-		if (!std::strchr(buffer, '.') && !std::strchr(buffer, 'e') && !std::strchr(buffer, 'n')) {
-			std::strncat(buffer, ".0", sizeof(buffer) - std::strlen(buffer) - 1);
+		// make sure it reads as a float (but leave "inf"/"nan" alone)
+		if (result.find_first_of(".eni") == std::string::npos) {
+			result += ".0";
 		}
 
-	} else {
-		std::snprintf(buffer, sizeof(buffer), "%d", static_cast<int>(value));
+		return result;
 	}
 
+	std::snprintf(buffer, sizeof(buffer), "%d", static_cast<int>(value));
 	return buffer;
 }
 
