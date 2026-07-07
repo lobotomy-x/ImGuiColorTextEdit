@@ -196,6 +196,15 @@ void Editor::render() {
 		renderConfirmError();
 	}
 
+	// render the blueprint editor demos in their own windows
+	if (showBlueprintEditor) {
+		blueprintDemo.render(&showBlueprintEditor);
+	}
+
+	if (showUEVREditor) {
+		uevrDemo.render(&showUEVREditor);
+	}
+
 	ImGui::End();
 	ImGui::PopStyleVar();
 }
@@ -295,6 +304,10 @@ void Editor::renderMenuBar() {
 
 			ImGui::Separator();
 			if (ImGui::MenuItem("Show Diff", " " SHORTCUT "I")) { showDiff(); }
+
+			ImGui::Separator();
+			ImGui::MenuItem("Blueprint Editor", nullptr, &showBlueprintEditor);
+			ImGui::MenuItem("UEVR Lua Editor", nullptr, &showUEVREditor);
 
 			ImGui::EndMenu();
 		}

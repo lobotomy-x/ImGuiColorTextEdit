@@ -94,6 +94,27 @@ public API to externally implement these features is however included.
 - No longer uses regular expressions for colorizing text (see below).
 - Provides an optional companion widget to show source code differences between versions (see below).
 
+## BlueprintEditor
+
+This repository also contains an optional standalone widget that implements an
+Unreal Engine style Blueprint visual scripting editor for UObject-like class
+hierarchies (`BlueprintEditor.h` / `BlueprintEditor.cpp`). It provides event,
+function, variable, flow control, reroute and comment nodes generated from a
+UObject-style reflection registry, exec/data wires with Unreal's pin colors and
+connection rules, a searchable context-sensitive palette, pan/zoom, box select,
+inline default value editors, copy/paste, undo/redo and text serialization.
+Like the text editor, it is a self-contained two file widget that only depends
+on Dear ImGui. See [the documentation](docs/blueprintEditor.md) for details and
+try it in the example program via *View → Blueprint Editor*.
+
+A companion backend (`BlueprintLua.h` / `BlueprintLua.cpp`) turns these graphs
+into ready-to-run Lua scripts for [UEVR](https://uevr.io), the Unreal Engine VR
+injector: UEVR callbacks become event nodes, `uevr.api`/`uevr.params.vr` calls
+and UObject property access become function nodes, and the generator emits a
+`.lua` file for your UEVR profile. See [the documentation](docs/blueprintLua.md)
+and try it via *View → UEVR Lua Editor*, which previews the generated script
+live in a syntax highlighted text editor as you edit the graph.
+
 ## Integration
 
 As explained above, the editor is developed and maintained as part of a larger project.
