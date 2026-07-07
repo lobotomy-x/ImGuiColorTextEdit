@@ -47,11 +47,11 @@ void BlueprintDemo::buildSampleGraph() {
 
 	// Event Tick -> drain health -> branch on death -> update state
 	auto tick = blueprint.AddEventNode("AActor", "Tick", ImVec2(0.0f, 260.0f));
-	auto getHealth = blueprint.AddVariableGetNode("Health", ImVec2(60.0f, 420.0f));
-	auto multiply = blueprint.AddCallFunctionNode("UKismetMathLibrary", "Multiply (Float)", ImVec2(240.0f, 360.0f));
-	auto subtract = blueprint.AddCallFunctionNode("UKismetMathLibrary", "Subtract (Float)", ImVec2(460.0f, 400.0f));
+	auto getHealth = blueprint.AddVariableGetNode("Health", ImVec2(40.0f, 470.0f));
+	auto multiply = blueprint.AddCallFunctionNode("UKismetMathLibrary", "Multiply (Float)", ImVec2(220.0f, 380.0f));
+	auto subtract = blueprint.AddCallFunctionNode("UKismetMathLibrary", "Subtract (Float)", ImVec2(500.0f, 420.0f));
 	auto setHealth = blueprint.AddVariableSetNode("Health", ImVec2(340.0f, 240.0f));
-	auto less = blueprint.AddCallFunctionNode("UKismetMathLibrary", "Less (Float)", ImVec2(620.0f, 380.0f));
+	auto less = blueprint.AddCallFunctionNode("UKismetMathLibrary", "Less (Float)", ImVec2(780.0f, 420.0f));
 	auto branch = blueprint.AddFlowControlNode("Branch", ImVec2(640.0f, 240.0f));
 	auto setAlive = blueprint.AddVariableSetNode("Is Alive", ImVec2(880.0f, 240.0f));
 	auto died = blueprint.AddCallFunctionNode("UKismetSystemLibrary", "Print String", ImVec2(1140.0f, 240.0f));
@@ -70,11 +70,11 @@ void BlueprintDemo::buildSampleGraph() {
 	blueprint.AddLink(blueprint.FindPinID(setHealth, "Health", true), blueprint.FindPinID(less, "A", false));
 	blueprint.AddLink(blueprint.FindPinID(less, "Return Value", true), blueprint.FindPinID(branch, "Condition", false));
 
-	blueprint.AddCommentNode("Health drain", ImVec2(-40.0f, 180.0f), ImVec2(880.0f, 340.0f));
+	blueprint.AddCommentNode("Health drain", ImVec2(-40.0f, 180.0f), ImVec2(1100.0f, 400.0f));
 
 	// a pure math island: distance to the player
 	auto getPawn = blueprint.AddCallFunctionNode("UGameplayStatics", "Get Player Pawn", ImVec2(0.0f, 640.0f));
-	auto distance = blueprint.AddCallFunctionNode("AActor", "Get Distance To", ImVec2(300.0f, 640.0f));
+	auto distance = blueprint.AddCallFunctionNode("AActor", "Get Distance To", ImVec2(360.0f, 660.0f));
 	blueprint.AddLink(blueprint.FindPinID(getPawn, "Return Value", true), blueprint.FindPinID(distance, "Target", false));
 
 	// mark the freshly built graph as the clean baseline
