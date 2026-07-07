@@ -91,6 +91,7 @@ public:
 		std::string category;
 		std::string tooltip;
 		std::string keywords;
+		std::string metadata; // free-form binding data for code generators (e.g. a Lua expression template)
 		bool isPure = false;
 		bool isStatic = false;
 		std::vector<Parameter> parameters;
@@ -111,6 +112,7 @@ public:
 		Function& Static() { isStatic = true; return *this; }
 		Function& Keywords(const std::string& value) { keywords = value; return *this; }
 		Function& Tooltip(const std::string& value) { tooltip = value; return *this; }
+		Function& Metadata(const std::string& value) { metadata = value; return *this; }
 	};
 
 	struct Property {
@@ -124,6 +126,7 @@ public:
 		std::string name;
 		std::string parentName;
 		std::string tooltip;
+		std::string metadata; // free-form binding data for code generators (e.g. a Lua target expression)
 		std::vector<Property> properties;
 		std::vector<Function> functions;
 		std::vector<Function> events;
@@ -144,6 +147,11 @@ public:
 
 		Class& AddProperty(const std::string& pname, const PinType& ptype, const std::string& category = "", const std::string& tooltip2 = "") {
 			properties.push_back(Property{pname, category, tooltip2, ptype});
+			return *this;
+		}
+
+		Class& Metadata(const std::string& value) {
+			metadata = value;
 			return *this;
 		}
 	};
@@ -297,6 +305,12 @@ public:
 	inline bool CanRedo() const { return undoIndex + 1 < undoStack.size(); }
 	void Undo();
 	void Redo();
+
+	// read access to the graph (for inspection and code generators)
+	inline const std::vector<Node>& GetNodes() const { return nodes; }
+	inline const std::vector<Link>& GetLinks() const { return links; }
+	inline const Node* GetNode(ID id) const { return findNode(id); }
+	inline const Pin* GetPin(ID id) const { return findPin(id); }
 
 	// statistics and state
 	inline size_t GetNodeCount() const { return nodes.size(); }

@@ -107,6 +107,14 @@ Like the text editor, it is a self-contained two file widget that only depends
 on Dear ImGui. See [the documentation](docs/blueprintEditor.md) for details and
 try it in the example program via *View → Blueprint Editor*.
 
+A companion backend (`BlueprintLua.h` / `BlueprintLua.cpp`) turns these graphs
+into ready-to-run Lua scripts for [UEVR](https://uevr.io), the Unreal Engine VR
+injector: UEVR callbacks become event nodes, `uevr.api`/`uevr.params.vr` calls
+and UObject property access become function nodes, and the generator emits a
+`.lua` file for your UEVR profile. See [the documentation](docs/blueprintLua.md)
+and try it via *View → UEVR Lua Editor*, which previews the generated script
+live in a syntax highlighted text editor as you edit the graph.
+
 ## Integration
 
 As explained above, the editor is developed and maintained as part of a larger project.

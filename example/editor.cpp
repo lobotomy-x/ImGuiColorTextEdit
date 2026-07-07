@@ -196,9 +196,13 @@ void Editor::render() {
 		renderConfirmError();
 	}
 
-	// render the blueprint editor demo in its own window
+	// render the blueprint editor demos in their own windows
 	if (showBlueprintEditor) {
 		blueprintDemo.render(&showBlueprintEditor);
+	}
+
+	if (showUEVREditor) {
+		uevrDemo.render(&showUEVREditor);
 	}
 
 	ImGui::End();
@@ -303,6 +307,7 @@ void Editor::renderMenuBar() {
 
 			ImGui::Separator();
 			ImGui::MenuItem("Blueprint Editor", nullptr, &showBlueprintEditor);
+			ImGui::MenuItem("UEVR Lua Editor", nullptr, &showUEVREditor);
 
 			ImGui::EndMenu();
 		}

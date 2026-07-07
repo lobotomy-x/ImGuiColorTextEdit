@@ -20,9 +20,12 @@ add_executable(example
 	../TextDiff.h
 	../BlueprintEditor.cpp
 	../BlueprintEditor.h
+	../BlueprintLua.cpp
+	../BlueprintLua.h
 	../dtl.h
 	editor.cpp
 	blueprint.cpp
+	uevr.cpp
 	dejavu.cpp
 	main.cpp)
 
