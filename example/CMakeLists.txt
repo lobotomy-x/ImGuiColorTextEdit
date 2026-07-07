@@ -18,8 +18,11 @@ add_executable(example
 	../TextEditor.h
 	../TextDiff.cpp
 	../TextDiff.h
+	../BlueprintEditor.cpp
+	../BlueprintEditor.h
 	../dtl.h
 	editor.cpp
+	blueprint.cpp
 	dejavu.cpp
 	main.cpp)
 

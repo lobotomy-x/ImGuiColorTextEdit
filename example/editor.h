@@ -18,6 +18,7 @@
 
 #include "../TextEditor.h"
 #include "../TextDiff.h"
+#include "blueprint.h"
 
 
 //
@@ -83,6 +84,10 @@ public:
 
 	bool autocomplete = false;
 	TextEditor::Trie trie;
+
+	// blueprint editor demo
+	bool showBlueprintEditor = false;
+	BlueprintDemo blueprintDemo;
 
 	// editor state
 	enum class State {

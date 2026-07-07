@@ -196,6 +196,11 @@ void Editor::render() {
 		renderConfirmError();
 	}
 
+	// render the blueprint editor demo in its own window
+	if (showBlueprintEditor) {
+		blueprintDemo.render(&showBlueprintEditor);
+	}
+
 	ImGui::End();
 	ImGui::PopStyleVar();
 }
@@ -295,6 +300,9 @@ void Editor::renderMenuBar() {
 
 			ImGui::Separator();
 			if (ImGui::MenuItem("Show Diff", " " SHORTCUT "I")) { showDiff(); }
+
+			ImGui::Separator();
+			ImGui::MenuItem("Blueprint Editor", nullptr, &showBlueprintEditor);
 
 			ImGui::EndMenu();
 		}
